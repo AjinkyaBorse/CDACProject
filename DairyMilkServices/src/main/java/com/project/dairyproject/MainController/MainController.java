@@ -1,18 +1,12 @@
 package com.project.dairyproject.MainController;
 
 import java.io.UnsupportedEncodingException;
-import java.security.PublicKey;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
-import javax.persistence.PostRemove;
-import javax.persistence.PostUpdate;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +31,6 @@ import com.project.dairyproject.LoginEntities.ChangePassword;
 import com.project.dairyproject.LoginEntities.Login;
 import com.project.dairyproject.LoginEntities.LoginByPhone;
 import com.project.dairyproject.LoginEntities.LoginByUsername;
-import com.project.dairyproject.Repository.PurchaseRecordRepository;
 import com.project.dairyproject.Services.AdminServices;
 import com.project.dairyproject.Services.ConsumerServices;
 import com.project.dairyproject.Services.DeletedRecordsServices;
@@ -49,8 +42,6 @@ import com.project.dairyproject.Services.SellerServices;
 import com.project.dairyproject.UserDefinedExceptions.EmailAddressFoundException;
 import com.project.dairyproject.UserDefinedExceptions.PhoneNumberFoundException;
 import com.project.dairyproject.UserDefinedExceptions.UsernameFoundException;
-
-import net.bytebuddy.asm.Advice.Return;
 
 @RestController
 @CrossOrigin
@@ -93,18 +84,7 @@ public class MainController {
 			throws UnsupportedEncodingException {
 		return conServ.getConsumerDetailsByEmailAndPassword(login.getEmailId(), login.getPassword());
 	}
-	/*
-	 * @PostMapping("/consumer/fetchdetailsbyusername") public ConsumerDetails
-	 * getConsumerDetailsByUsernameAndPassword(@RequestBody LoginByUsername
-	 * loginByUsername) { return
-	 * conServ.getConsumerDetailsByUsernameAndPassword(loginByUsername.getUsername()
-	 * , loginByUsername.getPassword()); }
-	 * 
-	 * @PostMapping("/consumer/fetchdetailsbyphonenumber") public ConsumerDetails
-	 * getConsumerDetailsByPhoneNumber(@RequestBody LoginByPhone loginByPhone) {
-	 * return conServ.getConsumerDetailsByPhoneNumber(loginByPhone.getPhoneNumber(),
-	 * loginByPhone.getPassword()); }
-	 */
+
 
 	@PostMapping("/consumer/updatedetails")
 	public ConsumerDetails updateConsumerDetails(@RequestBody ConsumerDetails consumerDetails)
@@ -119,7 +99,7 @@ public class MainController {
 	}
 
 	@PostMapping("/consumer/removeaccount")
-	public String deleteConsumerByEmailId(@RequestBody Login login) {
+	public String deleteConsumerByEmailId(@RequestBody Login login) throws UnsupportedEncodingException {
 		return conServ.deleteConsumerDetailsByEmailId(login);
 	}
 
@@ -181,7 +161,7 @@ public class MainController {
 	}
 
 	@PostMapping("/seller/removeaccount")
-	public String deleteSellerByEmailId(@RequestBody Login login) {
+	public String deleteSellerByEmailId(@RequestBody Login login) throws UnsupportedEncodingException {
 		return sellServ.deleteSellerDetailsByEmailId(login);
 	}
 

@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -12,8 +11,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import com.project.dairyproject.Entities.AddressDetails;
 import com.project.dairyproject.Entities.ConsumerDetails;
 import com.project.dairyproject.Entities.DeletedSellerRecords;
@@ -124,7 +121,7 @@ public class SellerServices {
 		return sellRepo.findSellerDetailsByPhoneNumberOnly(phoneNumber);
 	}
 
-	public String deleteSellerDetailsByEmailId(Login login) {
+	public String deleteSellerDetailsByEmailId(Login login) throws UnsupportedEncodingException {
 		return delSelServ.deleteSellerByEmailId(login);
 	}
 

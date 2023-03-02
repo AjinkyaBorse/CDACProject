@@ -1,8 +1,6 @@
 package com.project.dairyproject.Services;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Base64;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;

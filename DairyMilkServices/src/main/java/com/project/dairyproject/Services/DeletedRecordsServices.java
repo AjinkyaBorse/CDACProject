@@ -1,5 +1,7 @@
 package com.project.dairyproject.Services;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Base64;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -48,8 +50,9 @@ public class DeletedRecordsServices {
 	DeletedConsumerRecords delConRecord = new DeletedConsumerRecords();
 	DeletedSellerRecords delSellRecord = new DeletedSellerRecords();
 
-	public String deleteConsumerByEmailId(Login login) {
-		conDetails = conRepo.findConsumerDetailsByEmailAndPassword(login.getEmailId(), login.getPassword());
+	public String deleteConsumerByEmailId(Login login) throws UnsupportedEncodingException {
+		String encryptedPassword = Base64.getEncoder().encodeToString(login.getPassword().getBytes("UTF-8"));
+		conDetails = conRepo.findConsumerDetailsByEmailAndPassword(login.getEmailId(), encryptedPassword);
 		if (conDetails != null && conRepo.deleteConsumerDetailsByEmailId(conDetails.getEmailId()) == 1) {
 			delConRecord.setAddress(conDetails.getAddress());
 			delConRecord.setEmailId(conDetails.getEmailId());
@@ -108,9 +111,9 @@ public class DeletedRecordsServices {
 		return delRepo.findDeletedConsumerRecordsByFirstName(name);
 	}
 
-	public String deleteSellerByEmailId(Login login) {
-
-		sellDetails = sellRepo.findSellerDetailsByEmailAndPassword(login.getEmailId(), login.getPassword());
+	public String deleteSellerByEmailId(Login login) throws UnsupportedEncodingException {
+		String encryptedPassword = Base64.getEncoder().encodeToString(login.getPassword().getBytes("UTF-8"));
+		sellDetails = sellRepo.findSellerDetailsByEmailAndPassword(login.getEmailId(), encryptedPassword);
 		if (sellDetails != null && sellRepo.deleteSellerDetailsByEmailId(sellDetails.getEmailId()) == 1) {
 			delSellRecord.setAddress(sellDetails.getAddress());
 			delSellRecord.setEmailId(sellDetails.getEmailId());

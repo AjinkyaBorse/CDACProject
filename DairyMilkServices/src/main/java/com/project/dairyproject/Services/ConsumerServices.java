@@ -4,7 +4,6 @@ import java.io.UnsupportedEncodingException;
 import java.util.Base64;
 import java.util.List;
 
-import javax.swing.event.MenuKeyEvent;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +12,10 @@ import org.springframework.stereotype.Service;
 
 import com.project.dairyproject.Entities.AddressDetails;
 import com.project.dairyproject.Entities.ConsumerDetails;
-import com.project.dairyproject.Entities.DeletedConsumerRecords;
 import com.project.dairyproject.LoginEntities.ChangePassword;
 import com.project.dairyproject.LoginEntities.Login;
 import com.project.dairyproject.Repository.AddressRepository;
 import com.project.dairyproject.Repository.ConsumerRepository;
-import com.project.dairyproject.Repository.DeletedConsumerRepository;
 import com.project.dairyproject.UserDefinedExceptions.ConsumerNotFoundException;
 import com.project.dairyproject.UserDefinedExceptions.EmailAddressFoundException;
 import com.project.dairyproject.UserDefinedExceptions.IncorrectPasswordException;
@@ -110,7 +107,7 @@ public class ConsumerServices {
 		return conRepo.findConsumerDetailsByPhoneNumberOnly(phoneNumber);
 	}
 
-	public String deleteConsumerDetailsByEmailId(Login login) {
+	public String deleteConsumerDetailsByEmailId(Login login) throws UnsupportedEncodingException {
 		return delServ.deleteConsumerByEmailId(login);
 	}
 
@@ -178,7 +175,6 @@ public class ConsumerServices {
 				return "Password changed successfully.";
 			} else {
 				throw new IncorrectPasswordException("Incorrect old password !");
-//				throw new IncorrectPasswordException(encryptPassword+"naeem");
 			}
 
 		} else {

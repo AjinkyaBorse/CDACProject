@@ -16,25 +16,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.annotations.Check;
 import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.UniqueElements;
-import org.springframework.data.annotation.LastModifiedBy;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import net.bytebuddy.utility.nullability.UnknownNull;
 
 @Entity
 @Table
 @Component
-public class ConsumerDetails {
+public class ConsumerDetails{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -28,7 +28,7 @@ const SellerQueryAdmin = () => {
 
         <div className="container-md">
             <div>
-                <h1 style={{ marginTop: 20, marginBottom: 25, color: "darkorange" }}>Query Submitted By Consumer's</h1>
+                <h1 style={{ marginTop: 20, marginBottom: 25, color: "darkorange" }}>Query Submitted By Seller's</h1>
             </div>
 
             <table className="table table-hover">

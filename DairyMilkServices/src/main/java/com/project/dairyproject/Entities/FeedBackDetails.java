@@ -1,6 +1,5 @@
 package com.project.dairyproject.Entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +9,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.annotations.Nationalized;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
